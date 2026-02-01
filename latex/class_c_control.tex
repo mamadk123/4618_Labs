@@ -1,0 +1,131 @@
+\doxysection{CControl Class Reference}
+\hypertarget{class_c_control}{}\label{class_c_control}\index{CControl@{CControl}}
+
+
+Implements GET/\+\+SET communication with the embedded system over a serial COM port.  
+
+
+
+
+{\ttfamily \+\#include $<$CControl.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_c_control_a6498500ff403327b5770a3acebed1d93}{CControl}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_c_control}{CControl} object. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_control_ab2ae420ef75b010c0c9078e597781105}\label{class_c_control_ab2ae420ef75b010c0c9078e597781105} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+CControl} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{class_c_control}{CControl} object. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}{init\+\_\+com}} (int comport)
+\begin{DoxyCompactList}\small\item\em Opens the serial COM port used to communicate with the microcontroller. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}{get\+\_\+data}} (int type, int channel, int \&result)
+\begin{DoxyCompactList}\small\item\em Sends a GET command and returns the value from the embedded system. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}{set\+\_\+data}} (int type, int channel, int val)
+\begin{DoxyCompactList}\small\item\em Sends a SET command to write a value to the embedded system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}\label{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c} 
+\doxymbox{\hyperlink{class_serial}{Serial}} {\bfseries \+\_\+com}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_serial}{Serial} port object used to communicate with the embedded system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements GET/\+\+SET communication with the embedded system over a serial COM port. 
+
+\doxylink{class_c_control}{CControl} wraps the provided \doxylink{class_serial}{Serial} class and sends commands using the ELEX4618 protocol. Each command waits for an acknowledgement line beginning with \textquotesingle{}A\textquotesingle{}. The call returns false if a valid acknowledgement is not received before the timeout. 
+
+\label{doc-constructors}
+\Hypertarget{class_c_control_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_c_control_a6498500ff403327b5770a3acebed1d93}\index{CControl@{CControl}!CControl@{CControl}}
+\index{CControl@{CControl}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{CControl()}{CControl()}}
+{\footnotesize\ttfamily \label{class_c_control_a6498500ff403327b5770a3acebed1d93} 
+CControl::\+\+CControl (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_c_control}{CControl} object. 
+
+The object is not connected until init\+\_\+com is called. 
+
+\label{doc-func-members}
+\Hypertarget{class_c_control_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}\index{CControl@{CControl}!get\_data@{get\_data}}
+\index{get\_data@{get\_data}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_data()}{get\_data()}}
+{\footnotesize\ttfamily \label{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3} 
+bool CControl::\+get\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{type}{, }\item[{int}]{channel}{, }\item[{int \&}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Sends a GET command and returns the value from the embedded system. 
+
+Command format:\+ "{}\+G $<$type$>$ $<$channel$>$\textbackslash{}n"{}
+
+Reply format:\+ "{}\+A $<$type$>$ $<$channel$>$ $<$value$>$\textbackslash{}n"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & I/\+O type (DIGITAL, ANALOG, SERVO) \\
+\hline
+{\em channel} & Channel index to read (meaning depends on type) \\
+\hline
+{\em result} & Reference that receives the returned value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a valid reply is received before timeout, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}\index{CControl@{CControl}!init\_com@{init\_com}}
+\index{init\_com@{init\_com}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{init\_com()}{init\_com()}}
+{\footnotesize\ttfamily \label{class_c_control_a3d1384d0e1ee2a4a478a798b46457468} 
+void CControl::\+init\+\_\+com (\begin{DoxyParamCaption}\item[{int}]{comport}{}\end{DoxyParamCaption})}
+
+
+
+Opens the serial COM port used to communicate with the microcontroller. 
+
+This method opens COM$<$comport$>$ and flushes any startup text from the embedded system so that subsequent get\+\_\+data and set\+\_\+data calls receive clean protocol replies.
+
+
+\begin{DoxyParams}{Parameters}
+{\em comport} & COM port number (example:\+ 5 means "{}\+COM5"{}) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}\index{CControl@{CControl}!set\_data@{set\_data}}
+\index{set\_data@{set\_data}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{set\_data()}{set\_data()}}
+{\footnotesize\ttfamily \label{class_c_control_a13f557815616ef66a8f5dd4b725d8c32} 
+bool CControl::\+set\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{type}{, }\item[{int}]{channel}{, }\item[{int}]{val}{}\end{DoxyParamCaption})}
+
+
+
+Sends a SET command to write a value to the embedded system. 
+
+Command format:\+ "{}\+S $<$type$>$ $<$channel$>$ $<$value$>$\textbackslash{}n"{}
+
+Reply format:\+ "{}\+A $<$type$>$ $<$channel$>$ $<$value$>$\textbackslash{}n"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & I/\+O type (DIGITAL or SERVO) \\
+\hline
+{\em channel} & Channel index to write (meaning depends on type) \\
+\hline
+{\em val} & Value to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a valid reply is received before timeout, false otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_c_control_8h}{CControl.\+h}}\item 
+CControl.\+cpp\end{DoxyCompactItemize}
