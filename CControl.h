@@ -42,6 +42,9 @@ class CControl
 private:
 	Serial _com; ///< Serial port object used to communicate with the embedded system
 
+	double _press_start = -1.0; ///< Timestamp (seconds) when a button press is first detected
+	double _counted_time = -1.0; ///< Timestamp (seconds) of the last registered debounced press
+
 public:
 	/**
 	 * @brief Constructs a CControl object.
@@ -96,4 +99,32 @@ public:
 	 * @return true if a valid reply is received before timeout, false otherwise
 	 */
 	bool set_data(int type, int channel, int val);
+
+
+	/**
+	 * @brief Reads an analog input channel and returns the value as a percentage.
+	 *
+	 * This method sends a GET command for an analog channel, converts the returned
+	 * raw ADC value into a percentage (0.0 to 100.0), and returns the result.
+	 * The conversion is performed using the full-scale ADC range.
+	 *
+	* @param channel Analog input channel to read
+	 * @param percent Reference that receives the converted percentage value
+	 * @return true if the analog value is read successfully, false on timeout or error
+	 */
+	bool get_analog_percent(int channel, double& percent);
+
+
+	/**
+	3 * @brief Reads a digital input channel using debounce logic.
+	 *
+	 * This method implements software debounce for a digital input channel.
+	 * A button press is registered only once per physical press after the
+	 * debounce time has elapsed. The function returns true exactly once
+	 * for each valid button press.
+	 *
+	 * @param channel Digital input channel to read
+	 * @return true if a new debounced button press is detected, false otherwise
+	*/
+	bool get_button_debounced(int channel);
 };

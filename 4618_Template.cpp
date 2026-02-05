@@ -21,10 +21,12 @@
 #include "Client.h"
 #include "Server.h"
 
+#include "CSketch.h"
 // Must include Windows.h after Winsock2.h, so Serial must be included after Client/Server
 #include "Serial.h" 
 
 #define CANVAS_NAME "Display Image"
+
 
 // Your Lab 3 class
 #include "CControl.h"
@@ -33,8 +35,8 @@
 ////////////////////////////////////////////////////////////////
 // Lab 3 defines
 ////////////////////////////////////////////////////////////////
-#define JOYSTICK_X 11
-#define JOYSTICK_Y 4
+#define JOYSTICK_X 2
+#define JOYSTICK_Y 26
 
 #define ESC_KEY 27
 #define ADC_MAX 4095.0
@@ -396,6 +398,8 @@ void lab3()
 ////////////////////////////////////////////////////////////////
 void lab4()
 {
+    CSketch sketch(cv::Size(640, 480), 5);
+    sketch.run();
 }
 
 ////////////////////////////////////////////////////////////////
@@ -484,15 +488,18 @@ void analog_test(CControl& ctrl)
 
     while (true)
     {
-        if (_kbhit() && _getch() == ESC_KEY) break;
+        if (_kbhit() && _getch() == ESC_KEY) 
+            break;
 
         double elapsed = (cv::getTickCount() - last_print) / cv::getTickFrequency();
         if (elapsed >= 1.0)
         {
             last_print = cv::getTickCount();
 
-            if (!ctrl.get_data(ANALOG, JOYSTICK_X, x_val)) continue;
-            if (!ctrl.get_data(ANALOG, JOYSTICK_Y, y_val)) continue;
+            if (!ctrl.get_data(ANALOG, JOYSTICK_X, x_val)) 
+                continue;
+            if (!ctrl.get_data(ANALOG, JOYSTICK_Y, y_val)) 
+                continue;
 
             double x_pct = (x_val / ADC_MAX) * 100.0;
             double y_pct = (y_val / ADC_MAX) * 100.0;
@@ -513,14 +520,16 @@ void digital_test(CControl& ctrl)
 
     while (true)
     {
-        if (_kbhit() && _getch() == ESC_KEY) break;
+        if (_kbhit() && _getch() == ESC_KEY) 
+            break;
 
         double elapsed = (cv::getTickCount() - last_print) / cv::getTickFrequency();
         if (elapsed >= 0.2)
         {
             last_print = cv::getTickCount();
 
-            if (!ctrl.get_data(DIGITAL, BUTTON_S2, button_val)) continue;
+            if (!ctrl.get_data(DIGITAL, BUTTON_S2, button_val)) 
+                continue;
 
             int led_val = !button_val;
             ctrl.set_data(DIGITAL, RGB_BLUE_LED, led_val);
@@ -544,9 +553,11 @@ void button_test(CControl& ctrl)
 
     while (true)
     {
-        if (_kbhit() && _getch() == ESC_KEY) break;
+        if (_kbhit() && _getch() == ESC_KEY) 
+            break;
 
-        if (!ctrl.get_data(DIGITAL, BUTTON_S2, button_val)) continue;
+        if (!ctrl.get_data(DIGITAL, BUTTON_S2, button_val)) 
+            continue;
 
         double now = cv::getTickCount() / cv::getTickFrequency();
 
@@ -583,7 +594,8 @@ void servo_test(CControl& ctrl)
 
     while (true)
     {
-        if (_kbhit() && _getch() == ESC_KEY) break;
+        if (_kbhit() && _getch() == ESC_KEY) 
+            break;
 
         double elapsed = (cv::getTickCount() - last_update) / cv::getTickFrequency();
         if (elapsed >= 0.05)

@@ -11,11 +11,14 @@ CControl::~CControl() {}
 /////////////
 // constants
 /////////////
+#define ADC_MAX 4095.0
+#define DEBOUNCE_TIME 0.1
+
 static const char ack_char = 'A';
 static const char newline_char = '\n';
 static const char carriage_return_char = '\r';
 
-static const double init_flush_total_sec = 2.0;   // total time allowed to flush startup junk
+static const double init_flush_total_sec = 2.0; // total time allowed to flush startup junk
 static const double init_flush_line_sec = 0.05;  // timeout per attempted line when flushing
 
 static const double command_timeout_sec = 1.0;   // max time to wait for ACK reply 
@@ -23,7 +26,7 @@ static const double command_timeout_sec = 1.0;   // max time to wait for ACK rep
 
 static bool read_line(Serial& serial_port, std::string& out_line, double timeout_seconds)
 {
-    out_line.clear(); //Clear -> to not get old data
+    out_line.clear(); //Clear the old data
 
     char received_char = 0;
     double start_tick_count = cv::getTickCount();
@@ -161,4 +164,46 @@ bool CControl::set_data(int type, int channel, int val)
 
         return true;
     }
+}
+
+bool CControl::get_analog_percent(int channel, double& percent)
+{
+    int raw = 0;
+    if (!get_data(ANALOG, channel, raw))
+        return false;
+
+    percent = (raw / ADC_MAX) * 100.0;
+    return true;
+}
+
+bool CControl::get_button_debounced(int channel)
+{
+    int button_val = 1;
+    if (!get_data(DIGITAL, channel, button_val))
+        return false;
+
+    double now = cv::getTickCount() / cv::getTickFrequency();
+
+    if (button_val == 0)
+    {
+        if (_press_start < 0.0)
+        {
+            _press_start = now;
+        }
+        else
+        {
+            if ((now - _press_start >= DEBOUNCE_TIME) &&
+                (_counted_time < _press_start))
+            {
+                _counted_time = now;
+                return true;
+            }
+        }
+    }
+    else
+    {
+        _press_start = -1.0;
+    }
+
+    return false;
 }
