@@ -5,11 +5,11 @@
  * @file CControl.h
  * @brief CControl class for communicating with the TM4C123G using the ELEX4618 serial protocol.
  *
- * Protocol format (ASCII):
+ * Protocol format:
  *  GET: "G <type> <channel>\n"
  *  SET: "S <type> <channel> <value>\n"
  *
- * Expected reply (ASCII):
+ * Expected reply:
  *  "A <type> <channel> <value>\n"
  *
  * type:
@@ -46,6 +46,7 @@ private:
 	double _counted_time = -1.0; ///< Timestamp (seconds) of the last registered debounced press
 
 public:
+
 	/**
 	 * @brief Constructs a CControl object.
 	 *

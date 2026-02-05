@@ -35,8 +35,10 @@ public:
     /**
      * @brief Virtual destructor.
      */
-    virtual ~CBase4618();
+    ~CBase4618();
 
+    virtual void gpio() = 0;
+    
     /**
      * @brief Updates internal state and reads inputs.
      *

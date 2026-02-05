@@ -23,7 +23,7 @@ CSketch::CSketch(const cv::Size& canvas_size, int comport)
 
 void CSketch::update()
 {
-    // Pre-lab: intentionally empty
+    
 }
 
 void CSketch::draw()
