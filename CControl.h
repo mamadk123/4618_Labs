@@ -1,5 +1,6 @@
 #pragma once
 #include "Serial.h"
+#include <map>
 
 /**
  * @file CControl.h
@@ -42,8 +43,8 @@ class CControl
 private:
 	Serial _com; ///< Serial port object used to communicate with the embedded system
 
-	double _press_start = -1.0; ///< Timestamp (seconds) when a button press is first detected
-	double _counted_time = -1.0; ///< Timestamp (seconds) of the last registered debounced press
+	std::map<int, double> _press_start;    ///< Per-channel debounce start time
+	std::map<int, double> _counted_time;   ///< Per-channel debounce latch time
 
 public:
 
@@ -128,4 +129,14 @@ public:
 	 * @return true if a new debounced button press is detected, false otherwise
 	*/
 	bool get_button_debounced(int channel);
+
+	/**
+	 * @brief Reads accelerometer data.
+	 *
+	 * @param ax Acceleration in X axis (g)
+	 * @param ay Acceleration in Y axis (g)
+	 * @param az Acceleration in Z axis (g)
+	 * @return true if data was read successfully
+	 */
+	bool get_accel(double& ax, double& ay, double& az);
 };

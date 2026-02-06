@@ -25,6 +25,7 @@ class CBase4618
 protected:
     CControl _control;   ///< Hardware control interface
     cv::Mat  _canvas;    ///< OpenCV canvas used for drawing
+    bool _exit;
 
 public:
     /**
@@ -37,6 +38,22 @@ public:
      */
     ~CBase4618();
 
+
+    /**
+     * @brief Handles hardware input/output and communication with the embedded system.
+     *
+     * This method is called once per iteration of the main run loop and is intended
+     * to perform all low-level GPIO, ADC, and communication-related operations.
+     * The base class does not implement this method; derived classes must define
+     * the specific hardware interactions required by the application.
+     *
+     * Typical responsibilities include:
+     * - Reading analog inputs (e.g. joystick positions)
+     * - Reading debounced digital inputs (e.g. buttons)
+     * - Sending output commands (e.g. LEDs)
+     *
+     * Application-level logic and rendering must not be performed in this method.
+     */
     virtual void gpio() = 0;
     
     /**

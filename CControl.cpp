@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CControl.h"
 
 #include <string>
@@ -13,6 +13,10 @@ CControl::~CControl() {}
 /////////////
 #define ADC_MAX 4095.0
 #define DEBOUNCE_TIME 0.1
+
+#define ACCEL_X 23
+#define ACCEL_Y 24
+#define ACCEL_Z 25
 
 static const char ack_char = 'A';
 static const char newline_char = '\n';
@@ -184,26 +188,53 @@ bool CControl::get_button_debounced(int channel)
 
     double now = cv::getTickCount() / cv::getTickFrequency();
 
+    // Button pressed (active low)
     if (button_val == 0)
     {
-        if (_press_start < 0.0)
+        // First time seeing this press
+        if (_press_start[channel] <= 0.0)
         {
-            _press_start = now;
+            _press_start[channel] = now;
         }
         else
         {
-            if ((now - _press_start >= DEBOUNCE_TIME) &&
-                (_counted_time < _press_start))
+            // Debounce time passed and not yet counted
+            if ((now - _press_start[channel] >= DEBOUNCE_TIME) &&
+                (_counted_time[channel] < _press_start[channel]))
             {
-                _counted_time = now;
-                return true;
+                _counted_time[channel] = now;
+                return true;   // ONE clean press event
             }
         }
     }
     else
     {
-        _press_start = -1.0;
+        // Button released → reset press timer
+        _press_start[channel] = -1.0;
     }
 
     return false;
+}
+
+bool CControl::get_accel(double& ax, double& ay, double& az)
+{
+    // Raw ADC percent values (0–100)
+    double x_pct, y_pct, z_pct;
+
+    if (!get_analog_percent(ACCEL_X, x_pct))
+        return false;
+    if (!get_analog_percent(ACCEL_Y, y_pct))
+        return false;
+    if (!get_analog_percent(ACCEL_Z, z_pct))
+        return false;
+
+    // Convert percent to g's
+    // Assumes:
+    // 50% ≈ 0g
+    // 0%  ≈ -1g
+    // 100% ≈ +1g
+    ax = (x_pct - 50.0) / 50.0;
+    ay = (y_pct - 50.0) / 50.0;
+    az = (z_pct - 50.0) / 50.0;
+    return true;
 }
