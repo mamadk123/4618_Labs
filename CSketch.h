@@ -28,7 +28,7 @@ private:
     int  _color_index;       ///< Index of the current drawing color
     double _joy_x_pct;    ///< Joystick X position in percent (0–100)
     double _joy_y_pct;    ///< Joystick Y position in percent (0–100)
-    bool   _button_event; ///< True when a debounced button press is detected
+    bool   _color_change_event; ///< True when a debounced button press is detected
     bool _reset_event;    ///< Clear canvas request
     double _last_shake_time;   ///< Last shake timestamp
 
@@ -78,5 +78,22 @@ public:
      */
     void draw();  //OVERRIDE
 
+    /**
+     * @brief Updates the BoosterPack RGB LEDs to match the current drawing color.
+     *
+     * This function sets the state of the on-board RGB LEDs based on the current
+     * value of `_color_index`. Only the LEDs corresponding to the active drawing
+     * color are turned on; all others are turned off.
+     *
+     * Color mapping:
+     * - Index 0: Green
+     * - Index 1: Red
+     * - Index 2: Blue
+     * - Index 3: Yellow (Red + Green)
+     * - Index 4: Magenta (Red + Blue)
+     *
+     * This function performs hardware output only and does not modify application
+     * state. It is typically called after a color change event.
+     */
     void set_led_for_color();
 };

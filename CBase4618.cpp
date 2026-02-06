@@ -22,5 +22,4 @@ void CBase4618::run()
         if (key == 'q' || key == 'Q')
             _exit = true;
     }
-    cv::destroyAllWindows();
 }

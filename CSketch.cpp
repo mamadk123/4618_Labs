@@ -18,22 +18,21 @@
 #define JOY_SPEED   5.0      // pixels per frame
 
 #define SHAKE_THRESHOLD 1.25     // g's 
-#define SHAKE_COOLDOWN  0.30    // seconds
+#define SHAKE_COOLDOWN  0.30
 
 #define WINDOW_NAME "Etch-A-Sketch"
 
-///////////////////////
+//////////////////////
 /// Color constants
 //////////////////////
-static const cv::Scalar DRAW_COLORS[] =
-{
+#define NUM_COLORS 5
+static const cv::Scalar DRAW_COLORS[] =  {
     cv::Scalar(0, 255, 0),     // Green
     cv::Scalar(0, 0, 255),     // Red
     cv::Scalar(255, 0, 0),     // Blue
     cv::Scalar(0, 255, 255),   // Yellow
     cv::Scalar(255, 0, 255)    // Magenta
 };
-#define NUM_COLORS 5
 
 CSketch::CSketch(const cv::Size& canvas_size, int comport)
 {
@@ -54,7 +53,7 @@ CSketch::CSketch(const cv::Size& canvas_size, int comport)
     _joy_x_pct = 50;
     _last_shake_time = 0.0;
 
-    _button_event = false;
+    _color_change_event = false;
     _reset_event = false;
 
     set_led_for_color();
@@ -79,7 +78,7 @@ void CSketch::update(){
     // Store previous position
     _prev_pos = _current_pos;
 
-    // Update position (note Y inversion)
+    // Update position (Y IS INVERTED)
     _current_pos.x += static_cast<int>(dx);
     _current_pos.y -= static_cast<int>(dy);
 
@@ -106,12 +105,12 @@ void CSketch::update(){
         _reset_event = false;
     }
 
-    // Handle button event (one-shot)
-    if (_button_event)
+    // changing color
+    if (_color_change_event)
     {
         _color_index = (_color_index + 1) % NUM_COLORS;
 
-        _button_event = false; // IMPORTANT
+        _color_change_event = false;
         set_led_for_color();
     }    
 }
@@ -140,7 +139,7 @@ void CSketch::gpio() {
     _control.get_analog_percent(JOYSTICK_Y, _joy_y_pct);
 
     if (_control.get_button_debounced(BUTTON_S2))
-        _button_event = true;
+        _color_change_event = true;
     
     if (_control.get_button_debounced(BUTTON_S1))
         _reset_event = true;
@@ -164,6 +163,7 @@ void CSketch::gpio() {
 
 CSketch::~CSketch()
 {
+    cv::destroyAllWindows();
     // Turn off all RGB LEDs
     _control.set_data(DIGITAL, LED_RED, 0);
     _control.set_data(DIGITAL, LED_GREEN, 0);

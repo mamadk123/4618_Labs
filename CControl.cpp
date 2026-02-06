@@ -218,8 +218,8 @@ bool CControl::get_button_debounced(int channel)
 
 bool CControl::get_accel(double& ax, double& ay, double& az)
 {
-    // Raw ADC percent values (0–100)
-    double x_pct, y_pct, z_pct;
+
+    double x_pct, y_pct, z_pct; // percentage values
 
     if (!get_analog_percent(ACCEL_X, x_pct))
         return false;
@@ -228,12 +228,7 @@ bool CControl::get_accel(double& ax, double& ay, double& az)
     if (!get_analog_percent(ACCEL_Z, z_pct))
         return false;
 
-    // Convert percent to g's
-    // Assumes:
-    // 50% ≈ 0g
-    // 0%  ≈ -1g
-    // 100% ≈ +1g
-    ax = (x_pct - 50.0) / 50.0;
+    ax = (x_pct - 50.0) / 50.0; //converts percentage to -1 to 1
     ay = (y_pct - 50.0) / 50.0;
     az = (z_pct - 50.0) / 50.0;
     return true;
