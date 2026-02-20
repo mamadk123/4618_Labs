@@ -1,0 +1,36 @@
+\doxysection{CSketch.\+h}
+\hypertarget{_c_sketch_8h_source}{}\label{_c_sketch_8h_source}\doxymbox{\hyperlink{_c_sketch_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_c_base4618_8h}{CBase4618.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <opencv2/core.hpp>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_c_sketch_aa0879486bc45cb6968a9227ef6418f47}{CSketch}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_c_base4618_abe2aad021452c08dd4a5726b44c5a0b7}{CBase4618}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ cv::Point\ \doxymbox{\hyperlink{class_c_sketch_a46eb6ad75213d2b3a2db2188dcf2daeb}{\_current\_pos}};\ \ }
+\DoxyCodeLine{00026\ \ \ \ \ cv::Point\ \doxymbox{\hyperlink{class_c_sketch_a513005f9745d7acfe497bdb7bf150c1f}{\_prev\_pos}};\ \ \ \ \ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \doxymbox{\hyperlink{class_c_sketch_a330d5de0cd325bec49b37aac34495f68}{\_color\_index}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{class_c_sketch_a21374f32c2e5e363b274aef65f703371}{\_joy\_x\_pct}};\ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{class_c_sketch_afdf33f9bd3d3b1b5956210b356391523}{\_joy\_y\_pct}};\ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \doxymbox{\hyperlink{class_c_sketch_a42d4b563f4869ec6ad79a348e19c7663}{\_color\_change\_event}};\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_sketch_a9223d310454300e14f93ecb2c89f722d}{\_reset\_event}};\ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{class_c_sketch_a4ce270c4d6dc3154fe17ccc42e547eaa}{\_last\_shake\_time}};\ \ \ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \doxymbox{\hyperlink{class_c_sketch_aa0879486bc45cb6968a9227ef6418f47}{CSketch}}(\textcolor{keyword}{const}\ cv::Size\&\ canvas\_size,\ \textcolor{keywordtype}{int}\ comport);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00056\ \ \ \ \ \doxymbox{\hyperlink{class_c_sketch_aca8c70005a0bca496ea9574e4da47f65}{\string~CSketch}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_sketch_ae824179be5016c34ca7114568dca0d56}{gpio}}();\ \textcolor{comment}{//Override}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_sketch_a3b7e2fa57fd26e4b812494268a5bbfbb}{update}}();\ \textcolor{comment}{//OVERRIDE}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_sketch_a56d74e157fc3a743e4733b4d12f870bb}{draw}}();\ \ \textcolor{comment}{//OVERRIDE}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_sketch_a6a502bc1c0e07a4b3f8bb21d3e5d2b29}{set\_led\_for\_color}}();}
+\DoxyCodeLine{00099\ \};}
+
+\end{DoxyCode}

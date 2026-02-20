@@ -1,0 +1,335 @@
+\doxysection{CPong Class Reference}
+\hypertarget{class_c_pong}{}\label{class_c_pong}\index{CPong@{CPong}}
+
+
+Implements the Pong game for Lab 5 using Open\+CV graphics and embedded I/\+O.  
+
+
+
+
+{\ttfamily \+\#include $<$CPong.\+h$>$}
+
+Inheritance diagram for CPong:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_pong}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_c_pong_a51d8a51ea17f9e873984606fd367f27c}{CPong}} (cv::\+\+Size size, int comport)
+\begin{DoxyCompactList}\small\item\em Constructs the Pong game object. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_c_pong_aff4c3b1dc98694c7fafe100499e686a1}{\texorpdfstring{$\sim$}{\string~}\+CPong}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_pong_a5ca4fcf1948dea06a80cd99426e83a7b}{gpio}} ()
+\begin{DoxyCompactList}\small\item\em Reads user input from hardware. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_pong_abdf0d44329b40d14863ba134b031435a}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates the game state. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_pong_ae5c14ff09d074474ffd4f220b21dc00f}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Renders the current frame. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_pong_adeb1c4d12f5245c1ffa5a3dc01252dd8}{reset\+\_\+game}} ()
+\begin{DoxyCompactList}\small\item\em Resets the entire game state. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_pong_ac3db0c0c2c66aba1e974aa60020cd46c}{reset\+\_\+ball}} ()
+\begin{DoxyCompactList}\small\item\em Resets the ball to the center of the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries CBase4618} ()
+\begin{DoxyCompactList}\small\item\em Constructs the base class. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+CBase4618} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_base4618_a535e816d735d10d6048dd39cd893d393}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the main application loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_pong_ae9196bd7aaeb20f06fa06596e93b9325}\label{class_c_pong_ae9196bd7aaeb20f06fa06596e93b9325} 
+void {\bfseries update\+\_\+timing} ()
+\begin{DoxyCompactList}\small\item\em stabilizes fps \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a21cc44bbba950c7c3af036db469a78fc}\label{class_c_pong_a21cc44bbba950c7c3af036db469a78fc} 
+void {\bfseries check\+\_\+wall\+\_\+collision} ()
+\begin{DoxyCompactList}\small\item\em Checks collision between ball and walls. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a508fab8d06d6456e030536ffff6a64ee}\label{class_c_pong_a508fab8d06d6456e030536ffff6a64ee} 
+void {\bfseries check\+\_\+paddle\+\_\+collision} ()
+\begin{DoxyCompactList}\small\item\em Checks collision between ball and paddles. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_aba426f2e2c80ec9d6d47b1ec4fd2c67a}\label{class_c_pong_aba426f2e2c80ec9d6d47b1ec4fd2c67a} 
+void {\bfseries handle\+\_\+settings\+\_\+event} ()
+\begin{DoxyCompactList}\small\item\em Handles toggle event for settings window. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_pong_a8e2d34060959f6bf4ffb682ae6aa3b09}{update\+\_\+ball}} (float dt)
+\begin{DoxyCompactList}\small\item\em Updates ball position based on velocity and delta time. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_ae34da114809cbc0bb5f63f050ee02623}\label{class_c_pong_ae34da114809cbc0bb5f63f050ee02623} 
+void {\bfseries update\+\_\+right\+\_\+paddle} ()
+\begin{DoxyCompactList}\small\item\em Updates right paddle position using joystick input. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a32d47d3209d1ed3b664405b5b589c228}\label{class_c_pong_a32d47d3209d1ed3b664405b5b589c228} 
+void {\bfseries clamp\+\_\+ball\+\_\+inside} ()
+\begin{DoxyCompactList}\small\item\em Ensures ball remains inside display boundaries. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a3471598041c5bd3b6a4e051741940de0}\label{class_c_pong_a3471598041c5bd3b6a4e051741940de0} 
+void {\bfseries draw\+\_\+game\+\_\+over} ()
+\begin{DoxyCompactList}\small\item\em Draws the game over message overlay. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a05fdc92a22cdad5ebd509ede6c33ac6c}\label{class_c_pong_a05fdc92a22cdad5ebd509ede6c33ac6c} 
+void {\bfseries draw\+\_\+game} ()
+\begin{DoxyCompactList}\small\item\em Draws ball, paddles, score, and FPS. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_aae52c7c8c923ac818efd6d671bf33145}\label{class_c_pong_aae52c7c8c923ac818efd6d671bf33145} 
+void {\bfseries draw\+\_\+ui} ()
+\begin{DoxyCompactList}\small\item\em Draws static UI elements such as buttons. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a4f162817f3192ab29586a205955d88cb}\label{class_c_pong_a4f162817f3192ab29586a205955d88cb} 
+void {\bfseries draw\+\_\+settings\+\_\+panel} ()
+\begin{DoxyCompactList}\small\item\em Draws the settings control panel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_pong_a8cf4df5a9a8b4c04b6a7a641f330e684}\label{class_c_pong_a8cf4df5a9a8b4c04b6a7a641f330e684} 
+double {\bfseries m\+\_\+joy\+\_\+y\+\_\+pct}
+\begin{DoxyCompactList}\small\item\em Joystick vertical position (percentage 0–100). \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_aeee434c05f2abef8006982c7bf8c936c}\label{class_c_pong_aeee434c05f2abef8006982c7bf8c936c} 
+int {\bfseries m\+\_\+paddle\+\_\+speed}
+\begin{DoxyCompactList}\small\item\em Paddle movement speed. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_ab9f82a549ffe91e63576799942919d0b}\label{class_c_pong_ab9f82a549ffe91e63576799942919d0b} 
+bool {\bfseries m\+\_\+settings\+\_\+open}
+\begin{DoxyCompactList}\small\item\em True if settings panel is visible. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a070252edf6820fde534daa217d4ebc62}\label{class_c_pong_a070252edf6820fde534daa217d4ebc62} 
+bool {\bfseries m\+\_\+settings\+\_\+event}
+\begin{DoxyCompactList}\small\item\em Trigger flag for settings toggle. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a8a08d155108bd6eec7da4732bc00a91b}\label{class_c_pong_a8a08d155108bd6eec7da4732bc00a91b} 
+bool {\bfseries m\+\_\+game\+\_\+over}
+\begin{DoxyCompactList}\small\item\em True when a player reaches 5 points. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_ad4150c791aff6f461f0a5492f1ec9ad7}\label{class_c_pong_ad4150c791aff6f461f0a5492f1ec9ad7} 
+cv::\+\+Size {\bfseries m\+\_\+size}
+\begin{DoxyCompactList}\small\item\em Canvas dimensions. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a69c0a86946814a8ae5c461adfa27fc3b}\label{class_c_pong_a69c0a86946814a8ae5c461adfa27fc3b} 
+cv::\+\+Mat {\bfseries m\+\_\+canvas}
+\begin{DoxyCompactList}\small\item\em Frame buffer for rendering. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a8118682f0808cbef9ea6ff7ce3cb7e52}\label{class_c_pong_a8118682f0808cbef9ea6ff7ce3cb7e52} 
+std::\+string {\bfseries m\+\_\+window\+\_\+name}
+\begin{DoxyCompactList}\small\item\em Open\+CV window title. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a833ac39c4629061d9aefcc163013c197}\label{class_c_pong_a833ac39c4629061d9aefcc163013c197} 
+cv::\+\+Point2f {\bfseries m\+\_\+ball\+\_\+pos}
+\begin{DoxyCompactList}\small\item\em Ball position (floating point precision). \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a8b46c57191d3f0fa5663d3a6a43ad376}\label{class_c_pong_a8b46c57191d3f0fa5663d3a6a43ad376} 
+cv::\+\+Point2f {\bfseries m\+\_\+ball\+\_\+vel}
+\begin{DoxyCompactList}\small\item\em Ball velocity (pixels per second). \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_acde7c3ea57f01859aa02094df652d4f0}\label{class_c_pong_acde7c3ea57f01859aa02094df652d4f0} 
+int {\bfseries m\+\_\+ball\+\_\+radius}
+\begin{DoxyCompactList}\small\item\em Ball radius (pixels). \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a99417100ff8d5a1caf3100f67775c505}\label{class_c_pong_a99417100ff8d5a1caf3100f67775c505} 
+int {\bfseries m\+\_\+ball\+\_\+speed}
+\begin{DoxyCompactList}\small\item\em Ball speed magnitude (pixels per second). \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_ae1112bcfcdff77995a2157385137ac7c}\label{class_c_pong_ae1112bcfcdff77995a2157385137ac7c} 
+cv::\+\+Rect {\bfseries m\+\_\+left\+\_\+paddle}
+\begin{DoxyCompactList}\small\item\em Left paddle rectangle. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_afcf6263bb6c6c3121a22f98b104f83aa}\label{class_c_pong_afcf6263bb6c6c3121a22f98b104f83aa} 
+cv::\+\+Rect {\bfseries m\+\_\+right\+\_\+paddle}
+\begin{DoxyCompactList}\small\item\em Right paddle rectangle. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a4d173e30d67f99f771057b0df19064ed}\label{class_c_pong_a4d173e30d67f99f771057b0df19064ed} 
+int {\bfseries m\+\_\+score\+\_\+left}
+\begin{DoxyCompactList}\small\item\em Left player score. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a4efec21013b286610c7a56788f1b82e1}\label{class_c_pong_a4efec21013b286610c7a56788f1b82e1} 
+int {\bfseries m\+\_\+score\+\_\+right}
+\begin{DoxyCompactList}\small\item\em Right player score. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_acae8ff8b78c3caac95be4df41cc78f81}\label{class_c_pong_acae8ff8b78c3caac95be4df41cc78f81} 
+double {\bfseries m\+\_\+last\+\_\+time}
+\begin{DoxyCompactList}\small\item\em Last frame timestamp (seconds). \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_af9e91490c05a0f13cf5132ec571ef1ff}\label{class_c_pong_af9e91490c05a0f13cf5132ec571ef1ff} 
+double {\bfseries m\+\_\+fps}
+\begin{DoxyCompactList}\small\item\em Current measured FPS. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_afd9d01d5ca50ad14f8dd77eb9fb3d936}\label{class_c_pong_afd9d01d5ca50ad14f8dd77eb9fb3d936} 
+std::\+vector$<$ double $>$ {\bfseries m\+\_\+fps\+\_\+history}
+\begin{DoxyCompactList}\small\item\em vector storing fps history \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a3670ea1d7580b5b18a1de030bebea434}\label{class_c_pong_a3670ea1d7580b5b18a1de030bebea434} 
+double {\bfseries m\+\_\+fps\+\_\+sum}
+\begin{DoxyCompactList}\small\item\em sum of all the FPS(s) \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a3eace62cbf82ae471155c1cec50c435c}\label{class_c_pong_a3eace62cbf82ae471155c1cec50c435c} 
+size\+\_\+t {\bfseries m\+\_\+max\+\_\+samples}
+\begin{DoxyCompactList}\small\item\em Number of samples for averaging. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_a9bcac53ed79752713954a77c987db949}\label{class_c_pong_a9bcac53ed79752713954a77c987db949} 
+double {\bfseries m\+\_\+avg\+\_\+fps}
+\begin{DoxyCompactList}\small\item\em Average FPS. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_pong_afa4e8029b83bddd60d1166c2a7b03483}\label{class_c_pong_afa4e8029b83bddd60d1166c2a7b03483} 
+double {\bfseries target\+\_\+dt}
+\begin{DoxyCompactList}\small\item\em the time each loop should take \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_c_control}{CControl}} {\bfseries \+\_\+control}
+\begin{DoxyCompactList}\small\item\em Hardware control interface. \end{DoxyCompactList}\item 
+cv::\+\+Mat {\bfseries \+\_\+canvas}
+\begin{DoxyCompactList}\small\item\em Open\+CV canvas used for drawing. \end{DoxyCompactList}\item 
+bool {\bfseries \+\_\+exit}
+\begin{DoxyCompactList}\small\item\em Exit flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements the Pong game for Lab 5 using Open\+CV graphics and embedded I/\+O. 
+
+\doxylink{class_c_pong}{CPong} inherits from \doxylink{class_c_base4618}{CBase4618} and implements the required:\+
+\begin{DoxyItemize}
+\item \doxylink{class_c_pong_a5ca4fcf1948dea06a80cd99426e83a7b}{gpio()}
+\item \doxylink{class_c_pong_abdf0d44329b40d14863ba134b031435a}{update()}
+\item \doxylink{class_c_pong_ae5c14ff09d074474ffd4f220b21dc00f}{draw()}
+\end{DoxyItemize}
+
+The class manages:\+
+\begin{DoxyItemize}
+\item Ball physics using time-\/based motion
+\item Paddle movement using joystick input
+\item Collision detection
+\item Score tracking
+\item Game over logic
+\item Settings GUI
+\item Frame rate measurement and 30 FPS timing 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{class_c_pong_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_c_pong_a51d8a51ea17f9e873984606fd367f27c}\index{CPong@{CPong}!CPong@{CPong}}
+\index{CPong@{CPong}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{CPong()}{CPong()}}
+{\footnotesize\ttfamily \label{class_c_pong_a51d8a51ea17f9e873984606fd367f27c} 
+CPong::\+\+CPong (\begin{DoxyParamCaption}\item[{cv::\+\+Size}]{size}{, }\item[{int}]{comport}{}\end{DoxyParamCaption})}
+
+
+
+Constructs the Pong game object. 
+
+Initializes:\+
+\begin{DoxyItemize}
+\item Canvas and window
+\item Ball and paddle geometry
+\item Timing variables
+\item Scores and game state
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Size of the Open\+CV drawing canvas \\
+\hline
+{\em comport} & \doxylink{class_serial}{Serial} port used for embedded controller communication \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_c_pong_aff4c3b1dc98694c7fafe100499e686a1}\index{CPong@{CPong}!````~CPong@{\texorpdfstring{$\sim$}{\string~}CPong}}
+\index{````~CPong@{\texorpdfstring{$\sim$}{\string~}CPong}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CPong()}{\string~CPong()}}
+{\footnotesize\ttfamily \label{class_c_pong_aff4c3b1dc98694c7fafe100499e686a1} 
+CPong::\+\texorpdfstring{$\sim$}{\string~}\+CPong (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Releases Open\+CV window resources. 
+
+\label{doc-func-members}
+\Hypertarget{class_c_pong_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_pong_ae5c14ff09d074474ffd4f220b21dc00f}\index{CPong@{CPong}!draw@{draw}}
+\index{draw@{draw}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_c_pong_ae5c14ff09d074474ffd4f220b21dc00f} 
+void CPong::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Renders the current frame. 
+
+Draws:\+
+\begin{DoxyItemize}
+\item Ball
+\item Paddles
+\item Score
+\item FPS
+\item Settings panel
+\item Game over message (if active) 
+\end{DoxyItemize}
+
+Implements \doxymbox{\hyperlink{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315}{CBase4618}}.
+
+\Hypertarget{class_c_pong_a5ca4fcf1948dea06a80cd99426e83a7b}\index{CPong@{CPong}!gpio@{gpio}}
+\index{gpio@{gpio}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{gpio()}{gpio()}}
+{\footnotesize\ttfamily \label{class_c_pong_a5ca4fcf1948dea06a80cd99426e83a7b} 
+void CPong::\+gpio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reads user input from hardware. 
+
+
+\begin{DoxyItemize}
+\item Reads joystick analog value for paddle movement.
+\item Detects pushbutton events (settings toggle, reset). 
+\end{DoxyItemize}
+
+Implements \doxymbox{\hyperlink{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}{CBase4618}}.
+
+\Hypertarget{class_c_pong_ac3db0c0c2c66aba1e974aa60020cd46c}\index{CPong@{CPong}!reset\_ball@{reset\_ball}}
+\index{reset\_ball@{reset\_ball}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{reset\_ball()}{reset\_ball()}}
+{\footnotesize\ttfamily \label{class_c_pong_ac3db0c0c2c66aba1e974aa60020cd46c} 
+void CPong::\+reset\+\_\+ball (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Resets the ball to the center of the screen. 
+
+The ball is launched in a random direction with constant speed magnitude. \Hypertarget{class_c_pong_adeb1c4d12f5245c1ffa5a3dc01252dd8}\index{CPong@{CPong}!reset\_game@{reset\_game}}
+\index{reset\_game@{reset\_game}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{reset\_game()}{reset\_game()}}
+{\footnotesize\ttfamily \label{class_c_pong_adeb1c4d12f5245c1ffa5a3dc01252dd8} 
+void CPong::\+reset\+\_\+game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Resets the entire game state. 
+
+
+\begin{DoxyItemize}
+\item Clears scores
+\begin{DoxyItemize}
+\item Resets ball position
+\item Clears game over flag 
+\end{DoxyItemize}
+\end{DoxyItemize}\Hypertarget{class_c_pong_abdf0d44329b40d14863ba134b031435a}\index{CPong@{CPong}!update@{update}}
+\index{update@{update}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_c_pong_abdf0d44329b40d14863ba134b031435a} 
+void CPong::\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates the game state. 
+
+
+\begin{DoxyItemize}
+\item Computes delta time
+\item Updates ball motion
+\item Updates paddle position
+\item Checks for collisions
+\item Handles game over state 
+\end{DoxyItemize}
+
+Implements \doxymbox{\hyperlink{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6}{CBase4618}}.
+
+\Hypertarget{class_c_pong_a8e2d34060959f6bf4ffb682ae6aa3b09}\index{CPong@{CPong}!update\_ball@{update\_ball}}
+\index{update\_ball@{update\_ball}!CPong@{CPong}}
+\doxysubsubsection{\texorpdfstring{update\_ball()}{update\_ball()}}
+{\footnotesize\ttfamily \label{class_c_pong_a8e2d34060959f6bf4ffb682ae6aa3b09} 
+void CPong::\+update\+\_\+ball (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates ball position based on velocity and delta time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time (seconds) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+CPong.\+h\item 
+CPong.\+cpp\end{DoxyCompactItemize}

@@ -3,30 +3,43 @@
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Serial.h"{}}}
-\DoxyCodeLine{00003\ }
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00025\ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{_c_control_8h_a8005f1f182fd0248a710ca64f72508d4}{ControlType}}}
-\DoxyCodeLine{00026\ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \doxymbox{\hyperlink{_c_control_8h_a8005f1f182fd0248a710ca64f72508d4a0da6c680b2b129d86740b118d1f8307a}{DIGITAL}}\ =\ 0,\ }
-\DoxyCodeLine{00028\ \ \ \ \ \doxymbox{\hyperlink{_c_control_8h_a8005f1f182fd0248a710ca64f72508d4a49060614b990fe7d76fef9cd92990ce6}{ANALOG}}\ =\ 1,\ }
-\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{_c_control_8h_a8005f1f182fd0248a710ca64f72508d4a50df708a51be43e519b31b8861537c6a}{SERVO}}\ =\ 2\ \ }
-\DoxyCodeLine{00030\ \};}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_c_control_a6498500ff403327b5770a3acebed1d93}{CControl}}}
-\DoxyCodeLine{00041\ \{}
-\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{class_serial}{Serial}}\ \doxymbox{\hyperlink{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}{\_com}};\ }
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00051\ \ \ \ \ \doxymbox{\hyperlink{class_c_control_a6498500ff403327b5770a3acebed1d93}{CControl}}();}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00056\ \ \ \ \ \doxymbox{\hyperlink{class_c_control_ab2ae420ef75b010c0c9078e597781105}{\string~CControl}}();}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{_c_control_8h_a8005f1f182fd0248a710ca64f72508d4}{ControlType}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \doxymbox{\hyperlink{_c_control_8h_a8005f1f182fd0248a710ca64f72508d4a0da6c680b2b129d86740b118d1f8307a}{DIGITAL}}\ =\ 0,\ }
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{_c_control_8h_a8005f1f182fd0248a710ca64f72508d4a49060614b990fe7d76fef9cd92990ce6}{ANALOG}}\ =\ 1,\ }
+\DoxyCodeLine{00030\ \ \ \ \ \doxymbox{\hyperlink{_c_control_8h_a8005f1f182fd0248a710ca64f72508d4a50df708a51be43e519b31b8861537c6a}{SERVO}}\ =\ 2\ \ }
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_c_control_a6498500ff403327b5770a3acebed1d93}{CControl}}}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ \doxymbox{\hyperlink{class_serial}{Serial}}\ \doxymbox{\hyperlink{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}{\_com}};\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ std::map<int,\ double>\ \doxymbox{\hyperlink{class_c_control_aebb09590c98e5e7b3554836c2c8da88f}{\_press\_start}};\ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ std::map<int,\ double>\ \doxymbox{\hyperlink{class_c_control_ac08dcc980d116ae55794d1c8433e3326}{\_counted\_time}};\ \ \ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ \ \ \ \ \doxymbox{\hyperlink{class_c_control_a6498500ff403327b5770a3acebed1d93}{CControl}}();}
 \DoxyCodeLine{00057\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}{init\_com}}(\textcolor{keywordtype}{int}\ comport);}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}{get\_data}}(\textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{int}\ channel,\ \textcolor{keywordtype}{int}\&\ result);}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}{set\_data}}(\textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{int}\ channel,\ \textcolor{keywordtype}{int}\ val);}
-\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00061\ \ \ \ \ \doxymbox{\hyperlink{class_c_control_ab2ae420ef75b010c0c9078e597781105}{\string~CControl}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}{init\_com}}(\textcolor{keywordtype}{int}\ comport);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}{get\_data}}(\textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{int}\ channel,\ \textcolor{keywordtype}{int}\&\ result);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}{set\_data}}(\textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{int}\ channel,\ \textcolor{keywordtype}{int}\ val);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_aadf2242bb7a0b58bdb7641bff12cb63b}{get\_analog\_percent}}(\textcolor{keywordtype}{int}\ channel,\ \textcolor{keywordtype}{double}\&\ percent);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_a827a53c1b42bb4627811483d50e327c1}{get\_button\_debounced}}(\textcolor{keywordtype}{int}\ channel);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_c_control_adcda518f4e6b37239bbe8988000f9636}{get\_accel}}(\textcolor{keywordtype}{double}\&\ ax,\ \textcolor{keywordtype}{double}\&\ ay,\ \textcolor{keywordtype}{double}\&\ az);}
+\DoxyCodeLine{00142\ \};}
 
 \end{DoxyCode}

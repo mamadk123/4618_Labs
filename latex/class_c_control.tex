@@ -22,13 +22,25 @@ void \doxymbox{\hyperlink{class_c_control_a3d1384d0e1ee2a4a478a798b46457468}{ini
 bool \doxymbox{\hyperlink{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}{get\+\_\+data}} (int type, int channel, int \&result)
 \begin{DoxyCompactList}\small\item\em Sends a GET command and returns the value from the embedded system. \end{DoxyCompactList}\item 
 bool \doxymbox{\hyperlink{class_c_control_a13f557815616ef66a8f5dd4b725d8c32}{set\+\_\+data}} (int type, int channel, int val)
-\begin{DoxyCompactList}\small\item\em Sends a SET command to write a value to the embedded system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sends a SET command to write a value to the embedded system. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_control_aadf2242bb7a0b58bdb7641bff12cb63b}{get\+\_\+analog\+\_\+percent}} (int channel, double \&percent)
+\begin{DoxyCompactList}\small\item\em Reads an analog input channel and returns the value as a percentage. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_control_a827a53c1b42bb4627811483d50e327c1}{get\+\_\+button\+\_\+debounced}} (int channel)
+\begin{DoxyCompactList}\small\item\em Reads a digital input channel using debounce logic. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_c_control_adcda518f4e6b37239bbe8988000f9636}{get\+\_\+accel}} (double \&ax, double \&ay, double \&az)
+\begin{DoxyCompactList}\small\item\em Reads accelerometer data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c}\label{class_c_control_aef87fbcfdcd323b1fdcf41be993e006c} 
 \doxymbox{\hyperlink{class_serial}{Serial}} {\bfseries \+\_\+com}
-\begin{DoxyCompactList}\small\item\em \doxylink{class_serial}{Serial} port object used to communicate with the embedded system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_serial}{Serial} port object used to communicate with the embedded system. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_control_aebb09590c98e5e7b3554836c2c8da88f}\label{class_c_control_aebb09590c98e5e7b3554836c2c8da88f} 
+std::\+map$<$ int, double $>$ {\bfseries \+\_\+press\+\_\+start}
+\begin{DoxyCompactList}\small\item\em Per-\/channel debounce start time. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_control_ac08dcc980d116ae55794d1c8433e3326}\label{class_c_control_ac08dcc980d116ae55794d1c8433e3326} 
+std::\+map$<$ int, double $>$ {\bfseries \+\_\+counted\+\_\+time}
+\begin{DoxyCompactList}\small\item\em Per-\/channel debounce latch time. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -54,6 +66,72 @@ The object is not connected until init\+\_\+com is called.
 \label{doc-func-members}
 \Hypertarget{class_c_control_doc-func-members}
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_control_adcda518f4e6b37239bbe8988000f9636}\index{CControl@{CControl}!get\_accel@{get\_accel}}
+\index{get\_accel@{get\_accel}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_accel()}{get\_accel()}}
+{\footnotesize\ttfamily \label{class_c_control_adcda518f4e6b37239bbe8988000f9636} 
+bool CControl::\+get\+\_\+accel (\begin{DoxyParamCaption}\item[{double \&}]{ax}{, }\item[{double \&}]{ay}{, }\item[{double \&}]{az}{}\end{DoxyParamCaption})}
+
+
+
+Reads accelerometer data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ax} & Acceleration in X axis (g) \\
+\hline
+{\em ay} & Acceleration in Y axis (g) \\
+\hline
+{\em az} & Acceleration in Z axis (g) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if data was read successfully 
+\end{DoxyReturn}
+\Hypertarget{class_c_control_aadf2242bb7a0b58bdb7641bff12cb63b}\index{CControl@{CControl}!get\_analog\_percent@{get\_analog\_percent}}
+\index{get\_analog\_percent@{get\_analog\_percent}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_analog\_percent()}{get\_analog\_percent()}}
+{\footnotesize\ttfamily \label{class_c_control_aadf2242bb7a0b58bdb7641bff12cb63b} 
+bool CControl::\+get\+\_\+analog\+\_\+percent (\begin{DoxyParamCaption}\item[{int}]{channel}{, }\item[{double \&}]{percent}{}\end{DoxyParamCaption})}
+
+
+
+Reads an analog input channel and returns the value as a percentage. 
+
+This method sends a GET command for an analog channel, converts the returned raw ADC value into a percentage (0.\+0 to 100.\+0), and returns the result. The conversion is performed using the full-\/scale ADC range.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Analog input channel to read \\
+\hline
+{\em percent} & Reference that receives the converted percentage value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the analog value is read successfully, false on timeout or error 
+\end{DoxyReturn}
+\Hypertarget{class_c_control_a827a53c1b42bb4627811483d50e327c1}\index{CControl@{CControl}!get\_button\_debounced@{get\_button\_debounced}}
+\index{get\_button\_debounced@{get\_button\_debounced}!CControl@{CControl}}
+\doxysubsubsection{\texorpdfstring{get\_button\_debounced()}{get\_button\_debounced()}}
+{\footnotesize\ttfamily \label{class_c_control_a827a53c1b42bb4627811483d50e327c1} 
+bool CControl::\+get\+\_\+button\+\_\+debounced (\begin{DoxyParamCaption}\item[{int}]{channel}{}\end{DoxyParamCaption})}
+
+
+
+Reads a digital input channel using debounce logic. 
+
+3 \texorpdfstring{$\ast$}{*} 
+
+This method implements software debounce for a digital input channel. A button press is registered only once per physical press after the debounce time has elapsed. The function returns true exactly once for each valid button press.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Digital input channel to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a new debounced button press is detected, false otherwise 
+\end{DoxyReturn}
 \Hypertarget{class_c_control_a0bad8e51e54cb6f1e2a7b51d3a3940d3}\index{CControl@{CControl}!get\_data@{get\_data}}
 \index{get\_data@{get\_data}!CControl@{CControl}}
 \doxysubsubsection{\texorpdfstring{get\_data()}{get\_data()}}

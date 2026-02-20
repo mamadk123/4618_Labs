@@ -6,6 +6,7 @@
 
 
 {\ttfamily \+\#include "{}Serial.\+h"{}}\newline
+{\ttfamily \+\#include $<$map$>$}\newline
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -24,9 +25,9 @@ enum \doxymbox{\hyperlink{_c_control_8h_a8005f1f182fd0248a710ca64f72508d4}{Contr
 \doxysubsection{Detailed Description}
 \doxylink{class_c_control}{CControl} class for communicating with the TM4\+C123G using the ELEX4618 serial protocol. 
 
-Protocol format (ASCII):\+ GET:\+ "{}\+G $<$type$>$ $<$channel$>$\textbackslash{}n"{} SET:\+ "{}\+S $<$type$>$ $<$channel$>$ $<$value$>$\textbackslash{}n"{}
+Protocol format:\+ GET:\+ "{}\+G $<$type$>$ $<$channel$>$\textbackslash{}n"{} SET:\+ "{}\+S $<$type$>$ $<$channel$>$ $<$value$>$\textbackslash{}n"{}
 
-Expected reply (ASCII):\+ "{}\+A $<$type$>$ $<$channel$>$ $<$value$>$\textbackslash{}n"{}
+Expected reply:\+ "{}\+A $<$type$>$ $<$channel$>$ $<$value$>$\textbackslash{}n"{}
 
 type:\+ 0 = DIGITAL 1 = ANALOG 2 = SERVO 
 

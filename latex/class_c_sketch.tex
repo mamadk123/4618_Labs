@@ -1,0 +1,193 @@
+\doxysection{CSketch Class Reference}
+\hypertarget{class_c_sketch}{}\label{class_c_sketch}\index{CSketch@{CSketch}}
+
+
+Etch-\/\+A-\/\+Sketch application derived from \doxylink{class_c_base4618}{CBase4618}.  
+
+
+
+
+{\ttfamily \+\#include $<$CSketch.\+h$>$}
+
+Inheritance diagram for CSketch:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_sketch}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_c_sketch_aa0879486bc45cb6968a9227ef6418f47}{CSketch}} (const cv::\+\+Size \&canvas\+\_\+size, int comport)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_c_sketch}{CSketch} object. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_c_sketch_aca8c70005a0bca496ea9574e4da47f65}{\texorpdfstring{$\sim$}{\string~}\+CSketch}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{class_c_sketch}{CSketch} object and performs hardware cleanup. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_sketch_ae824179be5016c34ca7114568dca0d56}{gpio}} ()
+\begin{DoxyCompactList}\small\item\em Performs hardware input and output operations for the Etch-\/\+A-\/\+Sketch application. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_sketch_a3b7e2fa57fd26e4b812494268a5bbfbb}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates application state and reads inputs. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_sketch_a56d74e157fc3a743e4733b4d12f870bb}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws the current application state to the canvas. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_sketch_a6a502bc1c0e07a4b3f8bb21d3e5d2b29}{set\+\_\+led\+\_\+for\+\_\+color}} ()
+\begin{DoxyCompactList}\small\item\em Updates the Booster\+Pack RGB LEDs to match the current drawing color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries CBase4618} ()
+\begin{DoxyCompactList}\small\item\em Constructs the base class. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+CBase4618} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_base4618_a535e816d735d10d6048dd39cd893d393}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the main application loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_sketch_a46eb6ad75213d2b3a2db2188dcf2daeb}\label{class_c_sketch_a46eb6ad75213d2b3a2db2188dcf2daeb} 
+cv::\+\+Point {\bfseries \+\_\+current\+\_\+pos}
+\begin{DoxyCompactList}\small\item\em Current cursor position on the canvas. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a513005f9745d7acfe497bdb7bf150c1f}\label{class_c_sketch_a513005f9745d7acfe497bdb7bf150c1f} 
+cv::\+\+Point {\bfseries \+\_\+prev\+\_\+pos}
+\begin{DoxyCompactList}\small\item\em Previous cursor position (for line drawing). \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a330d5de0cd325bec49b37aac34495f68}\label{class_c_sketch_a330d5de0cd325bec49b37aac34495f68} 
+int {\bfseries \+\_\+color\+\_\+index}
+\begin{DoxyCompactList}\small\item\em Index of the current drawing color. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a21374f32c2e5e363b274aef65f703371}\label{class_c_sketch_a21374f32c2e5e363b274aef65f703371} 
+double {\bfseries \+\_\+joy\+\_\+x\+\_\+pct}
+\begin{DoxyCompactList}\small\item\em Joystick X position in percent (0–100). \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_afdf33f9bd3d3b1b5956210b356391523}\label{class_c_sketch_afdf33f9bd3d3b1b5956210b356391523} 
+double {\bfseries \+\_\+joy\+\_\+y\+\_\+pct}
+\begin{DoxyCompactList}\small\item\em Joystick Y position in percent (0–100). \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a42d4b563f4869ec6ad79a348e19c7663}\label{class_c_sketch_a42d4b563f4869ec6ad79a348e19c7663} 
+bool {\bfseries \+\_\+color\+\_\+change\+\_\+event}
+\begin{DoxyCompactList}\small\item\em True when a debounced button press is detected. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a9223d310454300e14f93ecb2c89f722d}\label{class_c_sketch_a9223d310454300e14f93ecb2c89f722d} 
+bool {\bfseries \+\_\+reset\+\_\+event}
+\begin{DoxyCompactList}\small\item\em Clear canvas request. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_sketch_a4ce270c4d6dc3154fe17ccc42e547eaa}\label{class_c_sketch_a4ce270c4d6dc3154fe17ccc42e547eaa} 
+double {\bfseries \+\_\+last\+\_\+shake\+\_\+time}
+\begin{DoxyCompactList}\small\item\em Last shake timestamp. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_c_control}{CControl}} {\bfseries \+\_\+control}
+\begin{DoxyCompactList}\small\item\em Hardware control interface. \end{DoxyCompactList}\item 
+cv::\+\+Mat {\bfseries \+\_\+canvas}
+\begin{DoxyCompactList}\small\item\em Open\+CV canvas used for drawing. \end{DoxyCompactList}\item 
+bool {\bfseries \+\_\+exit}
+\begin{DoxyCompactList}\small\item\em Exit flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Etch-\/\+A-\/\+Sketch application derived from \doxylink{class_c_base4618}{CBase4618}. 
+
+This class handles user interaction, drawing logic, and application state for the Etch-\/\+A-\/\+Sketch program. Hardware access is performed through the inherited \doxylink{class_c_control}{CControl} object. 
+
+\label{doc-constructors}
+\Hypertarget{class_c_sketch_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_c_sketch_aa0879486bc45cb6968a9227ef6418f47}\index{CSketch@{CSketch}!CSketch@{CSketch}}
+\index{CSketch@{CSketch}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{CSketch()}{CSketch()}}
+{\footnotesize\ttfamily \label{class_c_sketch_aa0879486bc45cb6968a9227ef6418f47} 
+CSketch::\+\+CSketch (\begin{DoxyParamCaption}\item[{const cv::\+\+Size \&}]{canvas\+\_\+size}{, }\item[{int}]{comport}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_c_sketch}{CSketch} object. 
+
+Initializes the drawing canvas and internal state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em canvas\+\_\+size} & Size of the drawing canvas in pixels \\
+\hline
+{\em comport} & COM port number used for hardware communication \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_c_sketch_aca8c70005a0bca496ea9574e4da47f65}\index{CSketch@{CSketch}!````~CSketch@{\texorpdfstring{$\sim$}{\string~}CSketch}}
+\index{````~CSketch@{\texorpdfstring{$\sim$}{\string~}CSketch}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CSketch()}{\string~CSketch()}}
+{\footnotesize\ttfamily \label{class_c_sketch_aca8c70005a0bca496ea9574e4da47f65} 
+CSketch::\+\texorpdfstring{$\sim$}{\string~}\+CSketch (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{class_c_sketch}{CSketch} object and performs hardware cleanup. 
+
+This destructor ensures the embedded system is left in a known safe state when the application exits. All RGB LEDs controlled by the sketch are turned off before the object is destroyed.
+
+The destructor is called automatically when the application terminates or when the \doxylink{class_c_sketch}{CSketch} object goes out of scope. 
+
+\label{doc-func-members}
+\Hypertarget{class_c_sketch_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_sketch_a56d74e157fc3a743e4733b4d12f870bb}\index{CSketch@{CSketch}!draw@{draw}}
+\index{draw@{draw}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_c_sketch_a56d74e157fc3a743e4733b4d12f870bb} 
+void CSketch::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Draws the current application state to the canvas. 
+
+Renders the canvas contents and any GUI elements. 
+
+Implements \doxymbox{\hyperlink{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315}{CBase4618}}.
+
+\Hypertarget{class_c_sketch_ae824179be5016c34ca7114568dca0d56}\index{CSketch@{CSketch}!gpio@{gpio}}
+\index{gpio@{gpio}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{gpio()}{gpio()}}
+{\footnotesize\ttfamily \label{class_c_sketch_ae824179be5016c34ca7114568dca0d56} 
+void CSketch::\+gpio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Performs hardware input and output operations for the Etch-\/\+A-\/\+Sketch application. 
+
+This method reads joystick and button inputs using the \doxylink{class_c_control}{CControl} interface and performs any required hardware output actions such as LED updates. The results of these operations are stored in member variables for use by the update method. 
+
+Implements \doxymbox{\hyperlink{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}{CBase4618}}.
+
+\Hypertarget{class_c_sketch_a6a502bc1c0e07a4b3f8bb21d3e5d2b29}\index{CSketch@{CSketch}!set\_led\_for\_color@{set\_led\_for\_color}}
+\index{set\_led\_for\_color@{set\_led\_for\_color}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{set\_led\_for\_color()}{set\_led\_for\_color()}}
+{\footnotesize\ttfamily \label{class_c_sketch_a6a502bc1c0e07a4b3f8bb21d3e5d2b29} 
+void CSketch::\+set\+\_\+led\+\_\+for\+\_\+color (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the Booster\+Pack RGB LEDs to match the current drawing color. 
+
+This function sets the state of the on-\/board RGB LEDs based on the current value of {\ttfamily \doxylink{class_c_sketch_a330d5de0cd325bec49b37aac34495f68}{\+\_\+color\+\_\+index}}. Only the LEDs corresponding to the active drawing color are turned on; all others are turned off.
+
+Color mapping:\+
+\begin{DoxyItemize}
+\item Index 0:\+ Green
+\item Index 1:\+ Red
+\item Index 2:\+ Blue
+\item Index 3:\+ Yellow (Red + Green)
+\item Index 4:\+ Magenta (Red + Blue)
+\end{DoxyItemize}
+
+This function performs hardware output only and does not modify application state. It is typically called after a color change event. \Hypertarget{class_c_sketch_a3b7e2fa57fd26e4b812494268a5bbfbb}\index{CSketch@{CSketch}!update@{update}}
+\index{update@{update}!CSketch@{CSketch}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_c_sketch_a3b7e2fa57fd26e4b812494268a5bbfbb} 
+void CSketch::\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates application state and reads inputs. 
+
+Reads joystick and button inputs and updates internal state. 
+
+Implements \doxymbox{\hyperlink{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6}{CBase4618}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_c_sketch_8h}{CSketch.\+h}}\item 
+CSketch.\+cpp\end{DoxyCompactItemize}

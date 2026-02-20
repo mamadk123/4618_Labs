@@ -1,0 +1,20 @@
+\doxysection{CBase4618.\+h File Reference}
+\hypertarget{_c_base4618_8h}{}\label{_c_base4618_8h}\index{CBase4618.h@{CBase4618.h}}
+
+
+Abstract base class for ELEX 4618 embedded GUI applications.  
+
+
+{\ttfamily \+\#include "{}CControl.\+h"{}}\newline
+{\ttfamily \+\#include $<$opencv2/\+core.\+hpp$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_c_base4618}{CBase4618}}
+\begin{DoxyCompactList}\small\item\em Base class providing the main application loop and shared resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for ELEX 4618 embedded GUI applications. 
+
+This class provides a common execution framework for all labs in the course. It owns the hardware control interface and the Open\+CV drawing canvas. Derived classes must implement the update and draw methods. 

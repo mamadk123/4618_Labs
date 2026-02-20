@@ -1,0 +1,123 @@
+\doxysection{CBase4618 Class Reference}
+\hypertarget{class_c_base4618}{}\label{class_c_base4618}\index{CBase4618@{CBase4618}}
+
+
+Base class providing the main application loop and shared resources.  
+
+
+
+
+{\ttfamily \+\#include $<$CBase4618.\+h$>$}
+
+Inheritance diagram for CBase4618:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_base4618}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_base4618_abe2aad021452c08dd4a5726b44c5a0b7}\label{class_c_base4618_abe2aad021452c08dd4a5726b44c5a0b7} 
+{\bfseries CBase4618} ()
+\begin{DoxyCompactList}\small\item\em Constructs the base class. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_base4618_a22c0de299cef06c4ef49ace3a5b0be52}\label{class_c_base4618_a22c0de299cef06c4ef49ace3a5b0be52} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+CBase4618} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}{gpio}} ()=0
+\begin{DoxyCompactList}\small\item\em Handles hardware input/\+output and communication with the embedded system. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6}{update}} ()=0
+\begin{DoxyCompactList}\small\item\em Updates internal state and reads inputs. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315}{draw}} ()=0
+\begin{DoxyCompactList}\small\item\em Draws the current application state to the canvas. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_c_base4618_a535e816d735d10d6048dd39cd893d393}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the main application loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_c_base4618_acaf7813d01908edfe72479529b5cdd48}\label{class_c_base4618_acaf7813d01908edfe72479529b5cdd48} 
+\doxymbox{\hyperlink{class_c_control}{CControl}} {\bfseries \+\_\+control}
+\begin{DoxyCompactList}\small\item\em Hardware control interface. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_base4618_a1b925f757247b33ca2072f777f24582d}\label{class_c_base4618_a1b925f757247b33ca2072f777f24582d} 
+cv::\+\+Mat {\bfseries \+\_\+canvas}
+\begin{DoxyCompactList}\small\item\em Open\+CV canvas used for drawing. \end{DoxyCompactList}\item 
+\Hypertarget{class_c_base4618_a1f3a8082999539e7c4edbb1c745b4a35}\label{class_c_base4618_a1f3a8082999539e7c4edbb1c745b4a35} 
+bool {\bfseries \+\_\+exit}
+\begin{DoxyCompactList}\small\item\em Exit flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class providing the main application loop and shared resources. 
+
+\doxylink{class_c_base4618}{CBase4618} defines a standard run loop that repeatedly calls update and draw. The loop exits when the user presses the \textquotesingle{}q\textquotesingle{} key. Derived classes implement application-\/specific behavior. 
+
+\label{doc-func-members}
+\Hypertarget{class_c_base4618_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315}\index{CBase4618@{CBase4618}!draw@{draw}}
+\index{draw@{draw}!CBase4618@{CBase4618}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_c_base4618_a0987bf28e9beed4753d3628fcddc3315} 
+virtual void CBase4618::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Draws the current application state to the canvas. 
+
+This method is implemented by the derived class. 
+
+Implemented in \doxymbox{\hyperlink{class_c_pong_ae5c14ff09d074474ffd4f220b21dc00f}{CPong}}, and \doxymbox{\hyperlink{class_c_sketch_a56d74e157fc3a743e4733b4d12f870bb}{CSketch}}.
+
+\Hypertarget{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12}\index{CBase4618@{CBase4618}!gpio@{gpio}}
+\index{gpio@{gpio}!CBase4618@{CBase4618}}
+\doxysubsubsection{\texorpdfstring{gpio()}{gpio()}}
+{\footnotesize\ttfamily \label{class_c_base4618_a8d55ae2f3ce30021775565dc895b8b12} 
+virtual void CBase4618::\+gpio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Handles hardware input/\+output and communication with the embedded system. 
+
+This method is called once per iteration of the main run loop and is intended to perform all low-\/level GPIO, ADC, and communication-\/related operations. The base class does not implement this method; derived classes must define the specific hardware interactions required by the application.
+
+Typical responsibilities include:\+
+\begin{DoxyItemize}
+\item Reading analog inputs (e.\+g. joystick positions)
+\item Reading debounced digital inputs (e.\+g. buttons)
+\item Sending output commands (e.\+g. LEDs)
+\end{DoxyItemize}
+
+Application-\/level logic and rendering must not be performed in this method. 
+
+Implemented in \doxymbox{\hyperlink{class_c_pong_a5ca4fcf1948dea06a80cd99426e83a7b}{CPong}}, and \doxymbox{\hyperlink{class_c_sketch_ae824179be5016c34ca7114568dca0d56}{CSketch}}.
+
+\Hypertarget{class_c_base4618_a535e816d735d10d6048dd39cd893d393}\index{CBase4618@{CBase4618}!run@{run}}
+\index{run@{run}!CBase4618@{CBase4618}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_c_base4618_a535e816d735d10d6048dd39cd893d393} 
+void CBase4618::\+run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Runs the main application loop. 
+
+Calls update and draw repeatedly until the user presses \textquotesingle{}q\textquotesingle{}. This is the only location where cv::\+wait\+Key is used. \Hypertarget{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6}\index{CBase4618@{CBase4618}!update@{update}}
+\index{update@{update}!CBase4618@{CBase4618}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_c_base4618_a1e2f3c16eb99b5bfdd5d5254aee39ee6} 
+virtual void CBase4618::\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Updates internal state and reads inputs. 
+
+This method is implemented by the derived class. 
+
+Implemented in \doxymbox{\hyperlink{class_c_pong_abdf0d44329b40d14863ba134b031435a}{CPong}}, and \doxymbox{\hyperlink{class_c_sketch_a3b7e2fa57fd26e4b812494268a5bbfbb}{CSketch}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_c_base4618_8h}{CBase4618.\+h}}\item 
+CBase4618.\+cpp\end{DoxyCompactItemize}
