@@ -89,6 +89,8 @@ public:
      */
     void reset_game();
 
+private:
+    
     /**
      * @brief Resets the ball to the center of the screen.
      *
@@ -97,8 +99,7 @@ public:
      */
     void reset_ball();
 
-private:
-    
+    /** @brief Update loop timing, pacing, and FPS measurements. */
     void update_timing();
 
     /** @brief Checks collision between ball and walls. */
@@ -120,6 +121,9 @@ private:
     /** @brief Updates right paddle position using joystick input. */
     void update_right_paddle();
 
+    /** @brief Updates left paddle position using ball Y position. */
+    void update_left_paddle();
+
     /** @brief Ensures ball remains inside display boundaries. */
     void clamp_ball_inside();
 
@@ -139,53 +143,53 @@ private:
     // Hardware and Game State
     // ------------------------------------------------------------------
 
-    double m_joy_y_pct;        ///< Joystick vertical position (percentage 0–100)
-    int m_paddle_speed;        ///< Paddle movement speed
-    bool m_settings_open;      ///< True if settings panel is visible
-    bool m_settings_event;     ///< Trigger flag for settings toggle
-    bool m_game_over;          ///< True when a player reaches 5 points
+    double _joy_y_pct;        ///< Joystick vertical position (percentage 0–100)
+    int _paddle_speed;        ///< Paddle movement speed
+    bool _settings_open;      ///< True if settings panel is visible
+    bool _settings_event;     ///< Trigger flag for settings toggle
+    bool _game_over;          ///< True when a player reaches 5 points
 
     // ------------------------------------------------------------------
     // Rendering
     // ------------------------------------------------------------------
 
-    cv::Size m_size;           ///< Canvas dimensions
-    cv::Mat m_canvas;          ///< Frame buffer for rendering
-    std::string m_window_name; ///< OpenCV window title
+    cv::Size _size;           ///< Canvas dimensions
+    cv::Mat _canvas;          ///< Frame buffer for rendering
+    std::string _window_name; ///< OpenCV window title
 
     // ------------------------------------------------------------------
     // Ball State
     // ------------------------------------------------------------------
 
-    cv::Point2f m_ball_pos;    ///< Ball position (floating point precision)
-    cv::Point2f m_ball_vel;    ///< Ball velocity (pixels per second)
-    int m_ball_radius;         ///< Ball radius (pixels)
-    int m_ball_speed;          ///< Ball speed magnitude (pixels per second)
+    cv::Point2f _ball_pos;    ///< Ball position (floating point precision)
+    cv::Point2f _ball_vel;    ///< Ball velocity (pixels per second)
+    int _ball_radius;         ///< Ball radius (pixels)
+    int _ball_speed;          ///< Ball speed magnitude (pixels per second)
 
     // ------------------------------------------------------------------
     // Paddle State
     // ------------------------------------------------------------------
 
-    cv::Rect m_left_paddle;    ///< Left paddle rectangle
-    cv::Rect m_right_paddle;   ///< Right paddle rectangle
+    cv::Rect _left_paddle;    ///< Left paddle rectangle
+    cv::Rect _right_paddle;   ///< Right paddle rectangle
 
     // ------------------------------------------------------------------
     // Score
     // ------------------------------------------------------------------
 
-    int m_score_left;          ///< Left player score
-    int m_score_right;         ///< Right player score
+    int _score_left;          ///< Left player score
+    int _score_right;         ///< Right player score
 
     // ------------------------------------------------------------------
     // Timing
     // ------------------------------------------------------------------
 
-    double m_last_time;   ///< Last frame timestamp (seconds)
-    double m_fps;         ///< Current measured FPS
+    double _last_time;   ///< Last frame timestamp (seconds)
+    double _fps;         ///< Current measured FPS
 
-    std::vector<double> m_fps_history; ///< vector storing fps history
-    double m_fps_sum; ///< sum of all the FPS(s)
-    size_t m_max_samples; ///< Number of samples for averaging
-    double m_avg_fps; ///< Average FPS
-    double target_dt; ///< the time each loop should take
+    std::vector<double> _fps_history;  ///< vector storing fps history
+    double _fps_sum;                   ///< sum of all the FPS(s)
+    size_t _max_samples;               ///< Number of samples for averaging
+    double _avg_fps;                   ///< Average FPS
+    double _target_dt;                   ///< the time each loop should take
 };
