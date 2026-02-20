@@ -38,3 +38,10 @@
 *.html
 *.js
 /html/_c_control_8h.html
+/html/_c_control_8h.html
+/html/_c_control_8h_source.html
+/html/annotated_dup.js
+/html/annotated.html
+*.png
+/html/class_c_control.html
+/html/class_c_control.js
