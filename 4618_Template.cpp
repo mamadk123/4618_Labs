@@ -22,6 +22,7 @@
 #include "Server.h"
 
 #include "CSketch.h"
+#include "CPong.h"
 // Must include Windows.h after Winsock2.h, so Serial must be included after Client/Server
 #include "Serial.h" 
 
@@ -407,6 +408,8 @@ void lab4()
 ////////////////////////////////////////////////////////////////
 void lab5()
 {
+    CPong pong(cv::Size(1200, 700), 5);
+    pong.run();
 }
 
 ////////////////////////////////////////////////////////////////

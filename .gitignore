@@ -35,3 +35,5 @@
 /build/
 
 *.bak
+*.html
+*.js
