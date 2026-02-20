@@ -3,7 +3,7 @@
 #include "CBase4618.h"
 #include <opencv2/opencv.hpp>
 #include <string>
-#include <deque>
+#include <vector>
 
 /**
  * @class CPong
@@ -98,6 +98,8 @@ public:
     void reset_ball();
 
 private:
+    
+    void update_timing();
 
     /** @brief Checks collision between ball and walls. */
     void check_wall_collision();
@@ -180,6 +182,10 @@ private:
 
     double m_last_time;   ///< Last frame timestamp (seconds)
     double m_fps;         ///< Current measured FPS
-    std::deque<double> m_fps_samples;
-    double m_fps_sum;
+
+    std::vector<double> m_fps_history; ///< vector storing fps history
+    double m_fps_sum; ///< sum of all the FPS(s)
+    size_t m_max_samples; ///< Number of samples for averaging
+    double m_avg_fps; ///< Average FPS
+    double target_dt; ///< the time each loop should take
 };

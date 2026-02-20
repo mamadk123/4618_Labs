@@ -5,6 +5,7 @@
 #include <ctime>
 #include <cmath>
 #include "cvui.h"
+#include <thread>
 
 #define JOYSTICK_Y 26
 #define JOY_DEADZONE 5.0
@@ -23,13 +24,12 @@ void CPong::gpio()
 
 void CPong::update()
 {
-	float dt = 1.0f / 33.0f;
-
+	update_timing();
 	handle_settings_event();
 
 		if (!m_settings_open && !m_game_over)
 		{
-			update_ball((float)dt);
+			update_ball((float)target_dt);
 			update_right_paddle();
 			clamp_ball_inside();
 			check_wall_collision();
@@ -39,31 +39,6 @@ void CPong::update()
 
 void CPong::draw()
 {
-	////////////////////////////////////////////////////////
-	double now = cv::getTickCount() / cv::getTickFrequency();
-	double frame_time = now - m_last_time;
-
-	if (frame_time > 0)
-	{
-		double current_fps = 1.0 / frame_time;
-
-		// Add new sample
-		m_fps_samples.push_back(current_fps);
-		m_fps_sum += current_fps;
-
-		// If more than 100 samples, remove oldest
-		if (m_fps_samples.size() > 100)
-		{
-			m_fps_sum -= m_fps_samples.front();
-			m_fps_samples.pop_front();
-		}
-
-		// Average
-		m_fps = m_fps_sum / m_fps_samples.size();
-	}
-
-	m_last_time = now;
-	////////////////////////////////////////////
 	m_canvas.setTo(cv::Scalar(0, 0, 0));
 
 	draw_game();
@@ -76,18 +51,6 @@ void CPong::draw()
 
 	cvui::update();
 	cv::imshow(m_window_name, m_canvas);
-
-	// ----- Cap to 30 FPS -----
-	double frame_end = cv::getTickCount() / cv::getTickFrequency();
-	double elapsed = frame_end - now;
-
-	double target = 1.0 / 150.0;
-
-	if (elapsed < target)
-	{
-		int delay = (int)((target - elapsed) * 1000.0);
-		cv::waitKey(delay);
-	}
 }
 
 CPong::CPong(cv::Size size, int comport)
@@ -113,7 +76,7 @@ CPong::CPong(cv::Size size, int comport)
 
 	// Ball
 	m_ball_radius = 20;
-	m_ball_speed = 200;
+	m_ball_speed = 400;
 	m_ball_vel = cv::Point2f(200.0f, 0.0f);
 
 	//Paddle  
@@ -135,7 +98,10 @@ CPong::CPong(cv::Size size, int comport)
 	//timing
 	m_last_time = cv::getTickCount() / cv::getTickFrequency();
 	m_fps = 0;
-	m_fps_sum = 0.0;
+	m_fps_sum = 0.0f;
+	m_max_samples = 100;
+	m_avg_fps = 0.0;
+	target_dt = 1.0f / 40.0f;
 	
 	reset_game();
 }
@@ -145,6 +111,38 @@ CPong::~CPong()
 	cv::destroyWindow(m_window_name);
 }
 
+void CPong::update_timing()
+{
+	double now = (double)cv::getTickCount() / cv::getTickFrequency();
+	double dt = now - m_last_time;
+
+	if (dt < target_dt)
+	{
+		std::this_thread::sleep_for(
+			std::chrono::duration<double>(target_dt - dt)
+		);
+
+		now = (double)cv::getTickCount() / cv::getTickFrequency();
+		dt = now - m_last_time;
+	}
+
+	m_last_time = now;
+
+	m_fps = 1.0 / dt;
+
+	// Add new fps
+	m_fps_history.push_back(m_fps);
+	m_fps_sum += m_fps;
+
+	// Keep only last 100
+	if (m_fps_history.size() > m_max_samples)
+	{
+		m_fps_sum -= m_fps_history.front();
+		m_fps_history.erase(m_fps_history.begin());
+	}
+
+	m_avg_fps = m_fps_sum / m_fps_history.size();
+}
 void CPong::reset_ball()
 {
 	// Center ball
@@ -308,7 +306,7 @@ void CPong::draw_ui()
 		cv::Scalar(255, 255, 255),
 		2);
 
-	std::string fps_text = "FPS: " + std::to_string((int)m_fps);
+	std::string fps_text = "FPS: " + std::to_string((int)m_avg_fps);
 	cv::putText(m_canvas, fps_text,
 		cv::Point(20, 40),
 		cv::FONT_HERSHEY_SIMPLEX,
@@ -342,7 +340,7 @@ void CPong::draw_settings_panel()
 
 	// Ball Speed
 	cvui::text(m_canvas, px + 30, y, "Ball Speed");
-	cvui::trackbar(m_canvas, px + 30, y + 20, 380, &m_ball_speed, 1, 400);
+	cvui::trackbar(m_canvas, px + 30, y + 20, 380, &m_ball_speed, 1, 800);
 
 	y += spacing;
 

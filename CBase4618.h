@@ -26,7 +26,6 @@ protected:
     CControl _control;   ///< Hardware control interface
     cv::Mat  _canvas;    ///< OpenCV canvas used for drawing
     bool _exit;         ///< Exit flag
-    double frame_time;
 
 public:
     /**
