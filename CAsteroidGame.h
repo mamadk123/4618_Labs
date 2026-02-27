@@ -2,10 +2,6 @@
 
 #include "CBase4618.h"
 #include "CShip.h"
-#pragma once
-
-#include "CBase4618.h"
-#include "CShip.h"
 #include "CAsteroid.h"
 #include "CBullet.h"
 
@@ -146,7 +142,12 @@ private:
     double _joy_y = 0;      ///< Joystick Y value
     double _joy_x = 0;      ///< Joystick X value
     float _accel_scale = 300.0f; ///< Ship acceleration scaling factor
-
+ 
+     ////////////////////////
+     /// Ship
+     ////////////////////////
+    void draw_points(); ///< Draws player's point 
+    int _score = 0;   ///< ship score
 
     ////////////////////////
     /// Bullets

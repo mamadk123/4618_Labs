@@ -78,6 +78,7 @@ void CAsteroidGame::draw()
     draw_ship();
     draw_bullets();
     draw_asteroids();
+    draw_points();
 
     handle_micro_not_connected();
     draw_game_over();
@@ -272,6 +273,9 @@ void CAsteroidGame::handle_collisions()
             {
                 b.hit();
                 a.hit();
+
+                if (a.get_lives() <= 0)
+                    _score += 10;   // 10 points per asteroid
             }
         }
     }
@@ -318,6 +322,20 @@ void CAsteroidGame::handle_micro_not_connected() {
     }
 }
 
+void CAsteroidGame::draw_points() {
+    std::string score_text = "Score: " + std::to_string(_score);
+
+    cv::putText(
+        _canvas,
+        score_text,
+        cv::Point(20, 90),
+        cv::FONT_HERSHEY_SIMPLEX,
+        0.8,
+        cv::Scalar(255, 255, 255),
+        2
+    );
+}
+
 void CAsteroidGame::draw_game_over()
 {
     if (_game_over)
@@ -353,6 +371,7 @@ void CAsteroidGame::reset_game()
     _ship.set_vel(Point2f(0.0f, 0.0f));
     _ship.set_angle(0.0f);
     _ship.set_lives(3);
+    _score = 0;
 }
 
 CAsteroidGame::~CAsteroidGame()
